@@ -1,5 +1,8 @@
 package software.ulpgc.app;
 
+import software.ulpgc.control.ImportFileCommand;
+import software.ulpgc.ui.ImportDialog;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
