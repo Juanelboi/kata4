@@ -2,40 +2,24 @@ package software.ulpgc.io;
 
 import software.ulpgc.model.Weapon;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileWeaponReader implements WeaponReader {
-    private final BufferedReader reader;
+    private final File file;
     private final WeaponDeserializer deserializer;
 
-    public FileWeaponReader(File file, WeaponDeserializer deserializer) throws IOException {
-        this.reader = readerOf(file);
+    public FileWeaponReader(File file, WeaponDeserializer deserializer) {
+        this.file = file;
         this.deserializer = deserializer;
-        SkipFirstLine();
-    }
-
-    private BufferedReader readerOf(File file) throws IOException {
-        return new BufferedReader(new InputStreamReader(new FileInputStream(file)));
     }
 
 
-    private void SkipFirstLine() throws IOException {
+    private void SkipFirstLine(BufferedReader reader) throws IOException {
         reader.readLine();
-    }
-
-    @Override
-    public Weapon read() throws IOException {
-        return deserialize(reader.readLine());
-    }
-
-    private Weapon deserialize(String line) {
-        return line!=null?deserializer.deserialize(line):null;
-    }
-
-    @Override
-    public void close() throws Exception {
-        reader.close();
     }
 }
