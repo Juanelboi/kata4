@@ -10,7 +10,7 @@ public class FileWeaponReader implements WeaponReader {
     private final BufferedReader reader;
     private final WeaponDeserializer deserializer;
 
-    public FileWeaponReader(File file, WeaponDeserializer deserializer) throws IOException {
+    public FileWeaponReader(File file, BufferedReader reader, WeaponDeserializer deserializer) throws IOException {
         this.reader = readerOf(file);
         this.deserializer = deserializer;
         SkipFirstLine();
@@ -32,5 +32,10 @@ public class FileWeaponReader implements WeaponReader {
 
     private Weapon deserialize(String line) {
         return line!=null?deserializer.deserialize(line):null;
+    }
+
+    @Override
+    public void close() throws Exception {
+        reader.close();
     }
 }
