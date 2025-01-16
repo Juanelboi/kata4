@@ -6,5 +6,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface WeaponReader {
-    List<Weapon> load()throws IOException;
+    Weapon read()throws IOException;
 }

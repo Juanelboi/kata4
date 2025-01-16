@@ -1,6 +1,5 @@
 package software.ulpgc.app;
 
-import software.ulpgc.control.ImportFileCommand;
 import software.ulpgc.ui.ImportDialog;
 
 import java.io.File;
